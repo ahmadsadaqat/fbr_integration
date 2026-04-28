@@ -1,5 +1,5 @@
 app_name = "fbr_integration"
-app_title = "FBR intergration"
+app_title = "FBR Integration"
 app_publisher = "ahmadsadaqat"
 app_description = "FBR integration"
 app_email = "ahmadsadaqat6161@gmail.com"
