@@ -249,9 +249,9 @@ app_license = "mit"
 
 doc_events = {
     "Sales Invoice": {
-        "on_submit": "fbr_integration.api.send_to_fbr"
+        "on_submit": "fbr_integration.api.queue_fbr_sync"
     },
     "POS Invoice": {
-        "on_submit": "fbr_integration.api.send_to_fbr"
+        "on_submit": "fbr_integration.api.queue_fbr_sync"
     }
 }

@@ -21,7 +21,7 @@ def setup_custom_fields():
                 "fieldname": "fbr_sync_status",
                 "label": "FBR Sync Status",
                 "fieldtype": "Select",
-                "options": "\nPending\nSynced\nFailed",
+                "options": "\nPending\nQueued\nSynced\nFailed\nMalicious", # Added Queued and Malicious
                 "default": "Pending",
                 "read_only": 1
             }
@@ -33,6 +33,22 @@ def setup_custom_fields():
                 "fieldtype": "Data",
                 "description": "Standard PCT Code for FBR (e.g., 1905.9000 for Bakers)",
                 "insert_after": "item_group"
+            }
+        ],
+        "POS Profile": [
+            {
+                "fieldname": "fbr_enabled",
+                "label": "Enable FBR Integration",
+                "fieldtype": "Check",
+                "default": 0,
+                "insert_after": "name"
+            },
+            {
+                "fieldname": "fbr_pos_id",
+                "label": "FBR POS ID",
+                "fieldtype": "Data",
+                "description": "Unique POS ID issued by FBR for this specific counter/branch",
+                "insert_after": "name"
             }
         ]
     }

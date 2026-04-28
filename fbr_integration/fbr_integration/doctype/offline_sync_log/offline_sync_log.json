@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "autoname": "POSI-LOG-,YYYY,-,####",
+ "creation": "2026-04-10 03:55:27.528505",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "grand_total",
+  "fbr_invoice_number",
+  "fbr_response",
+  "column_break_hres",
+  "sales_invoice",
+  "branch",
+  "pos_profile",
+  "pos_user",
+  "sync_status",
+  "payment_mode"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "sales_invoice.grand_total",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fbr_invoice_number",
+   "fieldtype": "Data",
+   "label": "FBR Invoice No.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fbr_response",
+   "fieldtype": "Code",
+   "label": "FBR Response",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_hres",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fetch_from": "sales_invoice.branch",
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fetch_from": "sales_invoice.pos_profile",
+   "fieldname": "pos_profile",
+   "fieldtype": "Link",
+   "label": "POS Profile",
+   "options": "Sales Invoice"
+  },
+  {
+   "fieldname": "pos_user",
+   "fieldtype": "Link",
+   "label": "POS User",
+   "options": "User"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sync Status",
+   "options": "Pending\nQueued\nSynced\nFailed\nMalicious"
+  },
+  {
+   "fieldname": "payment_mode",
+   "fieldtype": "Data",
+   "label": "Payment Mode"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-10 04:48:59.965993",
+ "modified_by": "Administrator",
+ "module": "FBR intergration",
+ "name": "Offline Sync Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
