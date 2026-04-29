@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "POSI-LOG-,YYYY,-,####",
+ "autoname": "POSI-LOG-.YYYY.-.####",
  "creation": "2026-04-10 03:55:27.528505",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -25,7 +25,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "sales_invoice.grand_total",
    "fieldname": "grand_total",
    "fieldtype": "Currency",
    "label": "Grand Total",
@@ -56,18 +55,16 @@
    "options": "Sales Invoice"
   },
   {
-   "fetch_from": "sales_invoice.branch",
    "fieldname": "branch",
    "fieldtype": "Link",
    "label": "Branch",
    "options": "Branch"
   },
   {
-   "fetch_from": "sales_invoice.pos_profile",
    "fieldname": "pos_profile",
    "fieldtype": "Link",
    "label": "POS Profile",
-   "options": "Sales Invoice"
+   "options": "POS Profile"
   },
   {
    "fieldname": "pos_user",
@@ -87,6 +84,12 @@
    "fieldname": "payment_mode",
    "fieldtype": "Data",
    "label": "Payment Mode"
+  },
+  {
+   "fieldname": "pos_invoice",
+   "fieldtype": "Link",
+   "label": "POS Invoice",
+   "options": "POS Invoice"
   }
  ],
  "grid_page_length": 50,
@@ -96,7 +99,7 @@
  "modified_by": "Administrator",
  "module": "FBR Integration",
  "name": "Offline Sync Log",
- "naming_rule": "Expression",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

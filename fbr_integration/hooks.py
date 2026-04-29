@@ -91,6 +91,8 @@ app_license = "mit"
 # before_uninstall = "fbr_integration.uninstall.before_uninstall"
 # after_uninstall = "fbr_integration.uninstall.after_uninstall"
 
+after_migrate = "fbr_integration.custom_fields.setup_custom_fields"
+
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps

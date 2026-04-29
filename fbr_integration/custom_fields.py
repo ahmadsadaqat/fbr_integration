@@ -26,6 +26,29 @@ def setup_custom_fields():
                 "read_only": 1
             }
         ],
+        "POS Invoice": [
+            {
+                "fieldname": "fbr_invoice_number",
+                "label": "FBR Invoice Number",
+                "fieldtype": "Data",
+                "read_only": 1,
+                "insert_after": "status"
+            },
+            {
+                "fieldname": "fbr_qr_code",
+                "label": "FBR QR Code",
+                "fieldtype": "Small Text",
+                "hidden": 1
+            },
+            {
+                "fieldname": "fbr_sync_status",
+                "label": "FBR Sync Status",
+                "fieldtype": "Select",
+                "options": "\nPending\nQueued\nSynced\nFailed\nMalicious",
+                "default": "Pending",
+                "read_only": 1
+            }
+        ],
         "Item": [
             {
                 "fieldname": "pct_code",

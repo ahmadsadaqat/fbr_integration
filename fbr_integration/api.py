@@ -24,19 +24,25 @@ def queue_fbr_sync(doc, method=None):
         return
 
     # 3. Create the Offline Sync Log entry
-    # We name the log after the Sales Invoice (doc.name) for uniqueness
-    if not frappe.db.exists("Offline Sync Log", doc.name):
-        log = frappe.get_doc({
+    log_exists = frappe.db.exists("Offline Sync Log", {"sales_invoice": doc.name}) or \
+                 frappe.db.exists("Offline Sync Log", {"pos_invoice": doc.name})
+    if not log_exists:
+        log_data = {
             "doctype": "Offline Sync Log",
-            "sales_invoice": doc.name,
             "sync_status": "Pending",
             # Fetch additional info for the log fields
-            "posa_pos_opening_shift": doc.get("pos_opening_entry"),
             "pos_profile": doc.pos_profile,
-            "branch": doc.branch,
+            "branch": doc.get("branch"),
             "customer": doc.customer,
             "grand_total": doc.grand_total
-        })
+        }
+        
+        if doc.doctype == "Sales Invoice":
+            log_data["sales_invoice"] = doc.name
+        elif doc.doctype == "POS Invoice":
+            log_data["pos_invoice"] = doc.name
+
+        log = frappe.get_doc(log_data)
 
         # ignore_links=True is critical to bypass potential 'Alraheem' link errors
         log.insert(ignore_permissions=True, ignore_links=True)
@@ -62,7 +68,14 @@ def process_fbr_sync(log_name):
     log.db_set("sync_status", "Queued")
 
     # Load the invoice data
-    doc = frappe.get_doc("Sales Invoice", log.sales_invoice)
+    if log.sales_invoice:
+        doc = frappe.get_doc("Sales Invoice", log.sales_invoice)
+    elif log.get("pos_invoice"):
+        doc = frappe.get_doc("POS Invoice", log.pos_invoice)
+    else:
+        log.db_set("sync_status", "Failed")
+        log.db_set("fbr_response", "Error: No linked Sales Invoice or POS Invoice found.")
+        return
     config = frappe.conf.get("fbr_config")
 
     if isinstance(config, str):
